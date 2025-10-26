@@ -2,6 +2,8 @@ import { useState, useContext, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleInfo, faExclamation } from '@fortawesome/free-solid-svg-icons'
 import clsx from 'clsx'
+
+// eslint-disable-next-line
 import { motion, AnimatePresence } from 'framer-motion'
 
 import { FormContext } from '../../contexts/Auth.context'
@@ -20,6 +22,7 @@ const AuthFormInputComponent                = ({
 }) => {
 
   // Get the form data from the context
+  /* eslint-disable no-unused-vars */
   const {
     formData,
     setFormData,
@@ -101,7 +104,7 @@ const AuthFormInputComponent                = ({
                 'block w-full p-4 mb-4 border-2 border-transparent outline-0 rounded-full bg-neutral-100 focus:shadow-lg shadow-neutral-300 focus:border-blue-600',
                 'dark:bg-neutral-800 dark:text-neutral-50 dark:focus:shadow-lg dark:shadow-neutral-950',
                 {
-                'text-red-600 !border-red-600': isTouched && !isValid,
+                'text-red-600 border-red-600!': isTouched && !isValid,
                 'pl-14': !!icon,
                 }
               )
