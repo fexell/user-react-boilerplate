@@ -69,7 +69,7 @@ const SignUpPage                            = () => {
           <AuthFormInputComponent
             type='text'
             name='email'
-            placeholder='Email'
+            placeholder='Email (required)'
             title='Email'
             icon={ faAt }
             required={ true }
@@ -78,7 +78,7 @@ const SignUpPage                            = () => {
           <AuthFormInputComponent
             type='text'
             name='username'
-            placeholder='Username'
+            placeholder='Username (required)'
             title='Username'
             icon={ faCircleUser }
             required={ true }
@@ -87,7 +87,7 @@ const SignUpPage                            = () => {
           <AuthFormInputComponent
             type='text'
             name='forename'
-            placeholder='Forename'
+            placeholder='Forename (required)'
             title='Forename'
             icon={ faSignature }
             required={ true }
@@ -95,7 +95,7 @@ const SignUpPage                            = () => {
           <AuthFormInputComponent
             type='text'
             name='surname'
-            placeholder='Surname'
+            placeholder='Surname (required)'
             title='Surname'
             icon={ faSignature }
             required={ true }
@@ -103,7 +103,7 @@ const SignUpPage                            = () => {
           <AuthFormInputComponent
             type='password'
             name='password'
-            placeholder='Password'
+            placeholder='Password (required)'
             title='Password'
             icon={ faLock }
             required={ true }
@@ -112,7 +112,7 @@ const SignUpPage                            = () => {
           <AuthFormInputComponent
             type='password'
             name='passwordConfirm'
-            placeholder='Confirm password'
+            placeholder='Confirm password (required)'
             title='Confirm password'
             icon={ faLock }
             required={ true }
