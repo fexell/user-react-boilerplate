@@ -5,15 +5,15 @@ import { faCircleHalfStroke } from '@fortawesome/free-solid-svg-icons'
 import clsx from 'clsx'
 
 import useAuthStore from '../stores/Auth.store'
-import useColorModeStore from '../stores/ColorMode.store'
+import useThemeStore from '../stores/Theme.store'
 
 const AuthLayout                            = ({ children, title, subtitle, footerText, footerLinkTo, footerLinkText, image }) => {
   const navigate                            = useNavigate()
   const userId                              = useAuthStore(( state ) => state.userId)
-  const { colorMode, setColorMode }         = useColorModeStore()
+  const { theme, setTheme }                 = useThemeStore()
 
-  const handleColorModeToggle               = () => {
-    setColorMode( colorMode === 'light' ? 'dark' : 'light' )
+  const handleThemeToggle                   = () => {
+    setTheme( theme === 'light' ? 'dark' : 'light' )
   }
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const AuthLayout                            = ({ children, title, subtitle, foot
             clsx(
               'relative flex flex-1 w-full min-h-screen max-h-screen justify-center items-center',
               {
-                'bg-neutral-900': colorMode === 'dark',
+                'bg-neutral-900': theme === 'dark',
               }
             )
           }>
@@ -42,14 +42,14 @@ const AuthLayout                            = ({ children, title, subtitle, foot
                       clsx(
                         'flex flex-row justify-center items-center transition ease-in-out duration-200',
                         {
-                          'text-white transform rotate-180': colorMode === 'dark',
+                          'text-white transform rotate-180': theme === 'dark',
                         }
                       )
                     }>
                     <FontAwesomeIcon
                       className='text-4xl hover:text-neutral-600 cursor-pointer'
                       icon={ faCircleHalfStroke }
-                      onClick={ handleColorModeToggle } />
+                      onClick={ handleThemeToggle } />
                   </button>
                 </div>
               </div>
@@ -57,7 +57,7 @@ const AuthLayout                            = ({ children, title, subtitle, foot
                 clsx(
                   'mb-4',
                   {
-                    'text-white': colorMode === 'dark',
+                    'text-white': theme === 'dark',
                   }
                 )
               }>
@@ -77,7 +77,7 @@ const AuthLayout                            = ({ children, title, subtitle, foot
                     clsx(
                       'block text-center',
                       {
-                        'text-white': colorMode === 'dark',
+                        'text-white': theme === 'dark',
                       }
                     )
                   }>

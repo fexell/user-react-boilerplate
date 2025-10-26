@@ -10,7 +10,7 @@ import SignUpPage from './auth/pages/Signup.page'
 
 import { useCsrfToken } from './auth/hooks/useCsrfToken.hook'
 
-import useColorModeStore from './auth/stores/ColorMode.store'
+import useThemeStore from './auth/stores/Theme.store'
 
 import './App.css'
 
@@ -18,18 +18,18 @@ const App                                   = () => {
   useCsrfToken()
 
   const {
-    colorMode,
-    setColorMode
-  }                       = useColorModeStore()
+    theme,
+    setTheme
+  }                                         = useThemeStore()
 
   useEffect(() => {
-    if( window.matchMedia( '(prefers-color-scheme: dark)' ).matches && colorMode === 'light' ) setColorMode( 'dark' )
+    if( window.matchMedia( '(prefers-color-scheme: dark)' ).matches && theme === 'light' ) setTheme( 'dark' )
   }, [])
 
   return (
     <>
       <main
-        className={ `${ colorMode }` }>
+        className={ `${ theme }` }>
         <div>
           <Routes>
             <Route element={ <MainLayout /> }>
