@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Routes, Route } from 'react-router'
 
-import HomeLayout from './home/layouts/Home.layout'
+import MainLayout from './shared/layouts/Main.layout'
 
 import HomePage from './home/pages/Home.page'
 
@@ -32,7 +32,7 @@ const App                                   = () => {
         className={ `${ colorMode }` }>
         <div>
           <Routes>
-            <Route element={ <HomeLayout /> }>
+            <Route element={ <MainLayout /> }>
               <Route path='/' element={ <HomePage /> } />
             </Route>
 
