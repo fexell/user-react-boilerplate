@@ -5,6 +5,20 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>frontend-react</title>
+    <script>
+      (function() {
+        try {
+          const theme = localStorage.getItem( 'color-mode' )
+
+          if( theme === 'dark' ) {
+            document.documentElement.classList.add( 'dark' )
+          }
+
+        } catch( e ) {
+          console.error( `Failed to apply theme from localStorage: ${ e }` )
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

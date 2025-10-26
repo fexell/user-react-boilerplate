@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleInfo, faExclamation } from '@fortawesome/free-solid-svg-icons'
 import clsx from 'clsx'
+import { motion, AnimatePresence } from 'framer-motion'
 
 import { FormContext } from '../../contexts/Auth.context'
 
@@ -48,9 +49,8 @@ const AuthFormInputComponent                = ({
     if( isRemember ) localStorage.setItem( name, e.target.value )
   }
 
-  const handleHover                         = () => {
-    setHovered( isHovered ? false : true )
-  }
+  const handleMouseEnter                    = () => setHovered( true )
+  const handleMouseLeave                    = () => setHovered( false )
 
   const isValid                             = regexp
     ? regexp.test( formData[ name ] )
@@ -120,8 +120,8 @@ const AuthFormInputComponent                = ({
             { !!explanation && (
               <div
                 className='absolute flex w-16 h-full right-0 justify-center items-center top-1/2 rounded-full -translate-y-1/2'
-                onMouseEnter={ handleHover }
-                onMouseLeave={ handleHover }>
+                onMouseEnter={ handleMouseEnter }
+                onMouseLeave={ handleMouseLeave }>
                 <div>
                   <FontAwesomeIcon
                     className='text-2xl text-blue-600 hover:text-blue-700'
@@ -129,23 +129,30 @@ const AuthFormInputComponent                = ({
                 </div>
               </div>
             ) }
-            { !!explanation && isHovered && (
-              <div className={
-                clsx(
-                  'absolute block w-full p-4 rounded-full left-1/2 transform -translate-x-1/2 bg-blue-600 z-10',
-                  'border-2 border-blue-600 shadow-2xl shadow-neutral-900/50 dark:shadow-2xl dark:shadow-neutral-900/50',
-                  'before:content-["▲"] before:absolute before:text-blue-600 before:-top-5 before:left-12',
-                  'fadeIn'
-                )
-              }>
-                <div className='relative'>
-                  <FontAwesomeIcon
-                    className='absolute text-xl text-neutral-50 top-1/2 -translate-y-1/2'
-                    icon={ faExclamation } />
-                  <p className='block text-center text-neutral-50'>{ explanation }</p>
-                </div>
-              </div>
-            ) }
+            <AnimatePresence>
+              { !!explanation && isHovered && (
+                <motion.div
+                key='explanation'
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.2 }}
+                className={
+                  clsx(
+                    'absolute block w-full p-4 rounded-full left-1/2 transform -translate-x-1/2 bg-blue-600 z-10',
+                    'border-2 border-blue-600 shadow-2xl shadow-neutral-900/50 dark:shadow-2xl dark:shadow-neutral-900/50',
+                    'before:content-["▲"] before:absolute before:text-blue-600 before:-top-5 before:left-12',
+                  )
+                }>
+                  <div className='relative'>
+                    <FontAwesomeIcon
+                      className='absolute text-xl text-neutral-50 top-1/2 -translate-y-1/2'
+                      icon={ faExclamation } />
+                    <p className='block text-center text-neutral-50'>{ explanation }</p>
+                  </div>
+                </motion.div>
+              ) }
+            </AnimatePresence>
         </div>
       </div>
     </>

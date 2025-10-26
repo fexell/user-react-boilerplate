@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Routes, Route } from 'react-router'
 
 import HomeLayout from './home/layouts/Home.layout'
@@ -16,7 +17,14 @@ import './App.css'
 const App                                   = () => {
   useCsrfToken()
 
-  const { colorMode }                       = useColorModeStore()
+  const {
+    colorMode,
+    setColorMode
+  }                       = useColorModeStore()
+
+  useEffect(() => {
+    if( window.matchMedia( '(prefers-color-scheme: dark)' ).matches && colorMode === 'light' ) setColorMode( 'dark' )
+  }, [])
 
   return (
     <>

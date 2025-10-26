@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware'
 const useColorModeStore                     = create(
   persist(
     ( set ) => ({
-      colorMode                             : 'light',
+      colorMode                             : localStorage.getItem( 'colorMode' ) || 'light',
       setColorMode                          : ( colorMode ) => set({ colorMode }),
     }),
     {

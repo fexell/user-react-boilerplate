@@ -54,7 +54,7 @@ const SignUpPage                            = () => {
     <>
       <title>Sign up</title>
       <AuthLayout
-        title='Greetings'
+        title='Sign up'
         subtitle='Fill in the form to sign up'
         footerText='Already have an account?'
         footerLinkTo='/login'
@@ -82,7 +82,7 @@ const SignUpPage                            = () => {
             title='Username'
             icon={ faCircleUser }
             required={ true }
-            regexp={ /^[a-zA-Z0-9_]{3,16}$/i }
+            regexp={ /^[a-zåäö0-9_]{3,16}$/i }
             explanation='Username must be between 3 and 16 characters' />
           <AuthFormInputComponent
             type='text'
@@ -91,7 +91,7 @@ const SignUpPage                            = () => {
             title='Forename'
             icon={ faSignature }
             required={ true }
-            regexp={ /^[a-zA-Z]{3,16}$/i } />
+            regexp={ /^[a-zåäö]{3,16}$/i } />
           <AuthFormInputComponent
             type='text'
             name='surname'
@@ -99,7 +99,7 @@ const SignUpPage                            = () => {
             title='Surname'
             icon={ faSignature }
             required={ true }
-            regexp={ /^[a-zA-Z]{3,16}$/i } />
+            regexp={ /^[a-zåäö]{3,16}$/i } />
           <AuthFormInputComponent
             type='password'
             name='password'
