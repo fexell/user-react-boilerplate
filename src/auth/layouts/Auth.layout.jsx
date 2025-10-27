@@ -7,7 +7,7 @@ import clsx from 'clsx'
 import useAuthStore from '../stores/Auth.store'
 import useThemeStore from '../stores/Theme.store'
 
-const AuthLayout                            = ({ children, title, subtitle, footerText, footerLinkTo, footerLinkText, image }) => {
+const AuthLayout                            = ({ children, isRedirect, title, subtitle, footerText, footerLinkTo, footerLinkText, image }) => {
   const navigate                            = useNavigate()
   const userId                              = useAuthStore(( state ) => state.userId)
   const { theme, setTheme }                 = useThemeStore()
@@ -17,8 +17,8 @@ const AuthLayout                            = ({ children, title, subtitle, foot
   }
 
   useEffect(() => {
-    if( userId ) navigate( '/' )
-  }, [ navigate, userId ])
+    if( userId && isRedirect ) navigate( '/' )
+  }, [ isRedirect, navigate, userId ])
 
   return (
     <>

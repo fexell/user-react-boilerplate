@@ -54,6 +54,7 @@ const SignUpPage                            = () => {
     <>
       <title>Sign up</title>
       <AuthLayout
+        isRedirect={ true }
         title='Sign up'
         subtitle='Fill in the form to sign up'
         footerText='Already have an account?'

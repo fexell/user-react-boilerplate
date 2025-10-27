@@ -18,7 +18,8 @@ const AuthFormInputComponent                = ({
   inputMode = 'text',
   isRemember,
   regexp,
-  explanation
+  explanation,
+  isDisabled = false,
 }) => {
 
   // Get the form data from the context
@@ -103,6 +104,7 @@ const AuthFormInputComponent                = ({
               clsx(
                 'block w-full p-4 mb-4 border-2 border-transparent outline-0 rounded-full bg-neutral-100 focus:shadow-lg shadow-neutral-300 focus:border-blue-600',
                 'dark:bg-neutral-800 dark:text-neutral-50 dark:focus:shadow-lg dark:shadow-neutral-950',
+                'disabled:text-neutral-500 disabled:cursor-not-allowed',
                 {
                 'text-red-600 border-red-600!': isTouched && !isValid,
                 'pl-14': !!icon,
@@ -119,7 +121,8 @@ const AuthFormInputComponent                = ({
             onBlur={ handleBlur }
             onChange={ handleChange }
             autoComplete='on'
-            aria-invalid={ regexp && !regexp.test( formData[ name ] ) } />
+            aria-invalid={ regexp && !regexp.test( formData[ name ] ) }
+            disabled={ isDisabled } />
             { !!explanation && (
               <div
                 className='absolute flex w-16 h-full right-0 justify-center items-center top-1/2 rounded-full -translate-y-1/2'

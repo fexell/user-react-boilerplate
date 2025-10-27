@@ -12,6 +12,8 @@ import AuthFormErrorComponent from '../components/Form/Error.component'
 
 import { apiClient } from '../api/Axios.api'
 
+import useAsyncStatus from '../hooks/useAsyncStatus.hook'
+
 import LoginImage from '../assets/images/Login.svg'
 
 const emailRegexp                           = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i
@@ -25,8 +27,12 @@ const LoginPage                             = () => {
   const { clearUserId }                     = useAuthStore()
   const setUserId                           = useAuthStore( ( state ) => state.setUserId )
 
-  // State for holding error
-  const [ error, setError ]                 = useState( null )
+  const {
+    loading,
+    successMessage,
+    errorMessage,
+    run,
+  }                                         = useAsyncStatus()
 
   // State for holding form data
   const [ formData, setFormData ]           = useState({
@@ -48,27 +54,20 @@ const LoginPage                             = () => {
     data.append( 'email', formData.email )
     data.append( 'password', formData.password )
 
-    try {
+    // Run request
+    const response                          = await run( apiClient.post( '/auth/login', data ) )
 
-      // Send login request
-      const response                        = await apiClient.post( '/auth/login', data )
-
-      // If login was successful, set error to empty string, and set user id store
-      if( response.status === 200 ) {
-        setError( '' )
-        setUserId( response.data.user.id )
-      }
-    } catch ( error ) {
-      setError( error?.response?.data )
-
-      console.log( error )
+    // Set user id
+    if( response.status === 200 ) {
+      setUserId( response.data.user.id )
     }
-  }, [ cookies, formData, clearUserId, setUserId ] )
+  }, [ cookies, clearUserId, formData, run, setUserId ] )
 
   return (
     <>
       <title>Login</title>
       <AuthLayout
+        isRedirect={ true }
         title='Welcome back!'
         subtitle='Fill in the form to log in'
         footerText="Don't have an account?"
@@ -101,7 +100,7 @@ const LoginPage                             = () => {
             regexp={ /^.{6,}$/ }
             explanation='Password must be at least 6 characters' />
           <AuthFormErrorComponent
-            errorMessage={ error?.message } />
+            errorMessage={ errorMessage } />
         </AuthFormComponent>
       </AuthLayout>
     </>

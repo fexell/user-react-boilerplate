@@ -7,6 +7,7 @@ import HomePage from './home/pages/Home.page'
 
 import LoginPage from './auth/pages/Login.page'
 import SignUpPage from './auth/pages/Signup.page'
+import VerifyEmailPage from './auth/pages/VerifyEmail.page'
 
 import { useCsrfToken } from './auth/hooks/useCsrfToken.hook'
 
@@ -38,6 +39,7 @@ const App                                   = () => {
 
             <Route path='/login' element={ <LoginPage /> } />
             <Route path='/signup' element={ <SignUpPage /> } />
+            <Route path='/email/verify/:token' element={ <VerifyEmailPage /> } />
           </Routes>
         </div>
       </main>
