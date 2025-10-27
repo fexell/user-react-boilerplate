@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Routes, Route } from 'react-router'
+import { ToastContainer } from 'react-toastify'
 
 import MainLayout from './shared/layouts/Main.layout'
 
@@ -41,6 +42,7 @@ const App                                   = () => {
             <Route path='/signup' element={ <SignUpPage /> } />
             <Route path='/email/verify/:token' element={ <VerifyEmailPage /> } />
           </Routes>
+          <ToastContainer />
         </div>
       </main>
     </>

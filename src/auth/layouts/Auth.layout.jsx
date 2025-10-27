@@ -28,7 +28,8 @@ const AuthLayout                            = ({ children, isRedirect, title, su
           {/* LEFT */}
           <div className={
             clsx(
-              'relative flex flex-1 w-full min-h-screen max-h-screen justify-center items-center',
+              'relative flex flex-1 flex-col w-full min-h-screen max-h-fit [@media(min-height:800px)]:justify-center items-center py-4 overflow-y-auto',
+              '',
               {
                 'bg-neutral-900': theme === 'dark',
               }

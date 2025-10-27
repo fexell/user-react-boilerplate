@@ -4,12 +4,15 @@ import useAuthStore from '../../auth/stores/Auth.store'
 
 import { apiClient } from '../../auth/api/Axios.api'
 
+import useAsyncStatus from '../../auth/hooks/useAsyncStatus.hook'
+
 const HomePage                              = () => {
   const { clearUserId }                     = useAuthStore()
+  const { run }                             = useAsyncStatus()
 
   const handleLogout                        = async () => {
     try {
-      await apiClient.post('/auth/logout')
+      await run( apiClient.post( '/auth/logout' ) )
 
       clearUserId()
     } catch ( error ) {

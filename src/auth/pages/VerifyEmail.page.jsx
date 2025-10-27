@@ -36,8 +36,8 @@ const VerifyEmailPage                       = () => {
 
   return (
     <>
+      <title>Verify your email</title>
       <AuthLayout
-        isRedirect
         title='Verify your email'
         subtitle='Please check your email to verify your account.'
         footerText='Already verified?'

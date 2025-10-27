@@ -42,7 +42,7 @@ const SignUpPage                            = () => {
     data.append( 'password', formData.password )
     data.append( 'passwordConfirm', formData.passwordConfirm )
 
-    run( apiClient.post( '/user', data ) )
+    await run( apiClient.post( '/user', data ) )
   }, [ formData, run ] )
 
   return (

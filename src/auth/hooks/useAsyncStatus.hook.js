@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 /**
  * Hook for async api calls
@@ -34,6 +35,8 @@ const useAsyncStatus                        = () => {
 
       // Set success
       setSuccess( message )
+
+      toast.success( message, { position: 'bottom-center' } )
 
       // Return result
       return result
