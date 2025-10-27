@@ -6,15 +6,22 @@ import AuthLayout from '../layouts/Auth.layout'
 import AuthFormComponent from '../components/Form/Form.component'
 import AuthFormInputComponent from '../components/Form/Input.component'
 import AuthFormErrorComponent from '../components/Form/Error.component'
+import AuthFormSuccessComponent from '../components/Form/Success.component'
 
 import { apiClient } from '../api/Axios.api'
 
+import useAsyncStatus from '../hooks/useAsyncStatus.hook'
+
 import SignUpImage from '../assets/images/SignUp.svg'
-import AuthFormSuccessComponent from '../components/Form/Success.component'
 
 const SignUpPage                            = () => {
-  const [ error, setError ]                 = useState( null )
-  const [ success, setSuccess ]             = useState( null )
+  const {
+    loading,
+    successMessage,
+    errorMessage,
+    run,
+  }                                         = useAsyncStatus()
+  
   const [ formData, setFormData ]           = useState({
     email                                   : '',
     username                                : '',
@@ -35,20 +42,8 @@ const SignUpPage                            = () => {
     data.append( 'password', formData.password )
     data.append( 'passwordConfirm', formData.passwordConfirm )
 
-    try {
-
-      const response                        = await apiClient.post( '/user', data )
-
-      console.log( response )
-
-      if ( response.status === 201 ) {
-        setError( null )
-        setSuccess( 'Account created successfully' )
-      }
-    } catch ( error ) {
-      setError( error.response.data )
-    }
-  }, [ formData ] )
+    run( apiClient.post( '/user', data ) )
+  }, [ formData, run ] )
 
   return (
     <>
@@ -118,8 +113,8 @@ const SignUpPage                            = () => {
             icon={ faLock }
             required={ true }
             regexp={ /^.{6,}$/ } />
-          <AuthFormErrorComponent errorMessage={ error?.message } />
-          <AuthFormSuccessComponent successMessage={ success?.message ?? success } />
+          <AuthFormErrorComponent errorMessage={ errorMessage } />
+          <AuthFormSuccessComponent successMessage={ successMessage } />
         </AuthFormComponent>
       </AuthLayout>
     </>
