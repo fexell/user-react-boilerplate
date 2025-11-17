@@ -25,7 +25,14 @@ const App                                   = () => {
   }                                         = useThemeStore()
 
   useEffect(() => {
-    if( window.matchMedia( '(prefers-color-scheme: dark)' ).matches && theme === 'light' ) setTheme( 'dark' )
+    const theme                             = JSON.parse( localStorage.getItem( 'theme' ) )
+
+    if( theme && theme.state.theme ) setTheme( theme.state.theme )
+    else
+      if( window.matchMedia( '(prefers-color-scheme: dark)' ).matches && theme === 'light' )
+        setTheme( 'dark' )
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -42,7 +49,7 @@ const App                                   = () => {
             <Route path='/signup' element={ <SignUpPage /> } />
             <Route path='/email/verify/:token' element={ <VerifyEmailPage /> } />
           </Routes>
-          <ToastContainer />
+          <ToastContainer theme={ theme === 'light' ? 'light' : 'dark' } />
         </div>
       </main>
     </>

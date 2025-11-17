@@ -26,6 +26,7 @@ const AuthFormComponent                     = ({
                   buttonType={ buttonType }
                   buttonText={ buttonText }
                   isButtonDisabled={ !Object.values( validity ).every( Boolean ) } />
+                <hr className='w-[80%] mt-6 mb-4 mx-auto text-neutral-300 dark:text-neutral-600' />
               </div>
             </form>
           </div>

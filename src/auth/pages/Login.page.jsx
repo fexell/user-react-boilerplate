@@ -27,6 +27,7 @@ const LoginPage                             = () => {
   const { clearUserId }                     = useAuthStore()
   const setUserId                           = useAuthStore( ( state ) => state.setUserId )
 
+  /* eslint-disable no-unused-vars */
   const {
     loading,
     successMessage,

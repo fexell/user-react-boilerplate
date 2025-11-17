@@ -15,6 +15,8 @@ import useAsyncStatus from '../hooks/useAsyncStatus.hook'
 import SignUpImage from '../assets/images/SignUp.svg'
 
 const SignUpPage                            = () => {
+
+  /* eslint-disable no-unused-vars */
   const {
     loading,
     successMessage,
@@ -65,7 +67,7 @@ const SignUpPage                            = () => {
           <AuthFormInputComponent
             type='text'
             name='email'
-            placeholder='Email (required)'
+            placeholder='Email'
             title='Email'
             icon={ faAt }
             required={ true }
@@ -74,7 +76,7 @@ const SignUpPage                            = () => {
           <AuthFormInputComponent
             type='text'
             name='username'
-            placeholder='Username (required)'
+            placeholder='Username'
             title='Username'
             icon={ faCircleUser }
             required={ true }
@@ -83,7 +85,7 @@ const SignUpPage                            = () => {
           <AuthFormInputComponent
             type='text'
             name='forename'
-            placeholder='Forename (required)'
+            placeholder='Forename'
             title='Forename'
             icon={ faSignature }
             required={ true }
@@ -91,7 +93,7 @@ const SignUpPage                            = () => {
           <AuthFormInputComponent
             type='text'
             name='surname'
-            placeholder='Surname (required)'
+            placeholder='Surname'
             title='Surname'
             icon={ faSignature }
             required={ true }
@@ -99,7 +101,7 @@ const SignUpPage                            = () => {
           <AuthFormInputComponent
             type='password'
             name='password'
-            placeholder='Password (required)'
+            placeholder='Password'
             title='Password'
             icon={ faLock }
             required={ true }
@@ -108,11 +110,12 @@ const SignUpPage                            = () => {
           <AuthFormInputComponent
             type='password'
             name='passwordConfirm'
-            placeholder='Confirm password (required)'
+            placeholder='Confirm password'
             title='Confirm password'
             icon={ faLock }
             required={ true }
-            regexp={ /^.{6,}$/ } />
+            regexp={ /^.{6,}$/ }
+            equals='password' />
           <AuthFormErrorComponent errorMessage={ errorMessage } />
           <AuthFormSuccessComponent successMessage={ successMessage } />
         </AuthFormComponent>

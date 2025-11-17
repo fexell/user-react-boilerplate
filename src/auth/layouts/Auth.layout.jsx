@@ -28,27 +28,20 @@ const AuthLayout                            = ({ children, isRedirect, title, su
           {/* LEFT */}
           <div className={
             clsx(
-              'relative flex flex-1 flex-col w-full min-h-screen max-h-fit [@media(min-height:800px)]:justify-center items-center py-4 overflow-y-auto',
-              '',
-              {
-                'bg-neutral-900': theme === 'dark',
-              }
+              'relative flex flex-1 flex-col w-full min-h-screen max-h-fit [@media(min-height:650px)]:justify-center items-center py-4 overflow-y-auto dark:bg-neutral-900'
             )
           }>
             <div className='flex flex-col w-full justify-center items-center'>
-              <div className='absolute top-4 left-4'>
+              <div className='fixed top-4 left-4'>
                 <div>
                   <button
                     className={
                       clsx(
-                        'flex flex-row justify-center items-center transition ease-in-out duration-200',
-                        {
-                          'text-white transform rotate-180': theme === 'dark',
-                        }
+                        'flex flex-row justify-center items-center transition ease-in-out duration-200 dark:text-white dark:transform dark:rotate-180'
                       )
                     }>
                     <FontAwesomeIcon
-                      className='text-4xl hover:text-neutral-600 cursor-pointer'
+                      className='text-4xl transition-colors ease-in-out duration-200 hover:text-neutral-400 cursor-pointer'
                       icon={ faCircleHalfStroke }
                       onClick={ handleThemeToggle } />
                   </button>
@@ -56,10 +49,7 @@ const AuthLayout                            = ({ children, isRedirect, title, su
               </div>
               <header className={
                 clsx(
-                  'mb-4',
-                  {
-                    'text-white': theme === 'dark',
-                  }
+                  'mb-4 dark:text-white'
                 )
               }>
                 <div>
@@ -76,10 +66,7 @@ const AuthLayout                            = ({ children, isRedirect, title, su
                 <div>
                   <p className={
                     clsx(
-                      'block text-center',
-                      {
-                        'text-white': theme === 'dark',
-                      }
+                      'block text-center dark:text-white'
                     )
                   }>
                     { footerText }&nbsp;

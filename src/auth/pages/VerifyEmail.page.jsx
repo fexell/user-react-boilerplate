@@ -18,6 +18,7 @@ import VerifyEmailImage from '../assets/images/EmailVerification.svg'
 const VerifyEmailPage                       = () => {
   const { token }                           = useParams()
 
+  /* eslint-disable no-unused-vars */
   const {
     loading,
     successMessage,

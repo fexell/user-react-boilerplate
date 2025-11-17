@@ -36,6 +36,7 @@ const useAsyncStatus                        = () => {
       // Set success
       setSuccess( message )
 
+      // Show toast, with success message
       toast.success( message, { position: 'bottom-center' } )
 
       // Return result
@@ -48,6 +49,9 @@ const useAsyncStatus                        = () => {
 
       // Set error
       setError( message )
+
+      // Show toast, with error message
+      toast.error( message, { position: 'bottom-center' } )
 
       // Throw error
       throw error
